@@ -1,4 +1,4 @@
-name: Deploy to Vercel
+name: Deploy to Cloudflare Pages
 
 on:
   push:
@@ -22,17 +22,18 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to Vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: team_FIaWHFDNvNcG1ZR62KYthk7h
-          VERCEL_PROJECT_ID: prj_goQxCFq8Lw8469yFzHqOFmgEzBuF
-        run: npx vercel --prod --yes --token="$VERCEL_TOKEN" | tee deploy_out.txt
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 22ac36d0db90024b8a20076027700ad7
+          command: pages deploy dist --project-name=task
 
       - name: Verify production API
         run: |
-          URL="$(grep -oP 'https://[^ ]+\.vercel\.app' deploy_out.txt | head -1)"
-          echo "Production URL: $URL"
+          URL="${{ steps.deploy.outputs.deployment-url }}"
+          echo "Deployment URL: $URL"
           CODE=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/api/add-component" -H 'Content-Type: application/json' -d '{"command":"@evil/x"}')
           echo "Invalid command -> HTTP $CODE (expect 400)"
           [ "$CODE" = "400" ]
