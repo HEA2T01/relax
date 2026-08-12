@@ -27,11 +27,11 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: team_FIaWHFDNvNcG1ZR62KYthk7h
           VERCEL_PROJECT_ID: prj_goQxCFq8Lw8469yFzHqOFmgEzBuF
-        run: npx vercel --prod --yes --token="$VERCEL_TOKEN" --output deploy_url.txt
+        run: npx vercel --prod --yes --token="$VERCEL_TOKEN" | tee deploy_out.txt
 
       - name: Verify production API
         run: |
-          URL="$(grep -oP 'https://[^ ]+\.vercel\.app' deploy_url.txt | head -1)"
+          URL="$(grep -oP 'https://[^ ]+\.vercel\.app' deploy_out.txt | head -1)"
           echo "Production URL: $URL"
           CODE=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/api/add-component" -H 'Content-Type: application/json' -d '{"command":"@evil/x"}')
           echo "Invalid command -> HTTP $CODE (expect 400)"
