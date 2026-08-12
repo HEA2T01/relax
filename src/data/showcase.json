@@ -172,46 +172,12 @@
         "自动添加"
       ],
       "demo": "aurora-background-demo.jsx",
-      "code": "<AuroraBackground\n    />",
+      "code": "import { AuroraBackground } from \"@/components/ui/aurora-background\";\n\nexport default function AuroraBackgroundDemo() {\n  return (\n    <AuroraBackground>\n      <h1 className=\"text-3xl font-bold text-white\">Aurora Background</h1>\n    </AuroraBackground>\n  );\n}",
       "usage": [
         "安装：npx shadcn@latest add @aceternity/aurora-background",
-        "核心组件 src/components/aurora-background-demo.jsx，导出 AuroraBackground，可独立复用。",
-        "组件使用默认 props 即可工作。",
-        "预览基于官方 demo；「可复用代码」为从 demo 提取的调用示例。"
-      ]
-    },
-    {
-      "id": "Aurora-Aurora",
-      "title": "Aurora",
-      "description": "React Bits · 通过网页一键添加的组件卡片",
-      "tags": [
-        "React Bits",
-        "自动添加"
-      ],
-      "demo": "Aurora/Aurora.jsx",
-      "code": "<Aurora />",
-      "usage": [
-        "安装：npx shadcn@latest add @react-bits/Aurora-JS-CSS",
-        "核心组件 src/components/Aurora/Aurora.jsx，导出 Aurora，可独立复用。",
-        "组件使用默认 props 即可工作。",
-        "预览基于官方 demo；「可复用代码」为从 demo 提取的调用示例。"
-      ]
-    },
-    {
-      "id": "SplitText-demo",
-      "title": "SplitText",
-      "description": "React Bits · 通过网页一键添加的组件卡片",
-      "tags": [
-        "React Bits",
-        "自动添加"
-      ],
-      "demo": "SplitText-demo.jsx",
-      "code": "<SplitText\n    />",
-      "usage": [
-        "安装：npx shadcn@latest add @react-bits/SplitText-JS-CSS",
-        "核心组件 src/components/SplitText-demo.jsx，导出 SplitTextDemo，可独立复用。",
-        "组件使用默认 props 即可工作。",
-        "预览基于官方 demo；「可复用代码」为从 demo 提取的调用示例。"
+        "核心组件 src/components/ui/aurora-background.tsx，导出 AuroraBackground，可独立复用。",
+        "children 为展示内容；className 可覆盖高度（默认 h-[100vh]）；showRadialGradient={false} 可关闭右上角径向遮罩。",
+        "动画依赖 aurora keyframes，需在 index.css 的 @theme 中一并配置（见本仓库 index.css）。"
       ]
     }
   ]
