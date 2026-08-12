@@ -21,7 +21,9 @@
     "react-icons": "^5.7.0",
     "tailwind-merge": "^3.6.0",
     "three": "^0.180.0",
-    "ogl@^1.0.11": "latest"
+    "ogl@^1.0.11": "latest",
+    "gsap@^3.13.0": "latest",
+    "@gsap/react@^2.1.2": "latest"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
