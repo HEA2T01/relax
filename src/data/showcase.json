@@ -1,0 +1,167 @@
+{
+  "entries": [
+    {
+      "id": "3d-card-demo",
+      "title": "3D 悬停卡片",
+      "description": "Aceternity UI · 基于 CSS perspective 的 3D 倾斜浮动效果",
+      "tags": [
+        "3D",
+        "悬停交互",
+        "CSS Perspective"
+      ],
+      "demo": "3d-card-demo.jsx",
+      "code": "import { CardBody, CardContainer, CardItem } from \"@/components/ui/3d-card\";\n\nexport default function MyCard() {\n  return (\n    <CardContainer>\n      <CardBody className=\"group/card w-auto sm:w-[30rem] rounded-xl border border-white/20 bg-[#0b0f1a] p-6\">\n        <CardItem translateZ=\"50\" className=\"text-xl font-bold text-white\">\n          卡片标题\n        </CardItem>\n        <CardItem\n          as=\"p\"\n          translateZ=\"60\"\n          className=\"mt-2 max-w-sm text-sm text-neutral-300\"\n        >\n          卡片描述文字\n        </CardItem>\n        <CardItem translateZ=\"100\" className=\"mt-4 w-full\">\n          <img\n            src=\"https://example.com/your-image.jpg\"\n            className=\"h-60 w-full rounded-xl object-cover\"\n            alt=\"cover\"\n          />\n        </CardItem>\n        <CardItem translateZ={20} className=\"mt-6 w-fit rounded-xl bg-white px-4 py-2 text-xs font-bold text-black\">\n          操作按钮\n        </CardItem>\n      </CardBody>\n    </CardContainer>\n  );\n}",
+      "usage": [
+        "安装：npx shadcn@latest add @aceternity/3d-card-demo",
+        "组件代码位于 src/components/ui/3d-card.jsx，复制它到你的项目（需已配置 @/ 路径别名与 tailwind-merge、clsx）。",
+        "引入三个组件：CardContainer（外层 3D 容器）、CardBody（卡片主体）、CardItem（内部浮动项）。",
+        "在任意 CardItem 上通过 translateZ / translateX / translateY 控制悬浮深度（值为 px）。",
+        "CardContainer 外部会自动加 perspective:1000px；无需额外 CSS，悬停即触发 3D 倾斜。"
+      ]
+    },
+    {
+      "id": "dither-shader-demo-duotone",
+      "title": "Dither 抖动图像 / 双色",
+      "description": "Aceternity UI · 基于像素抖动的点阵渲染，支持双色与多调色板",
+      "tags": [
+        "Dither",
+        "Canvas",
+        "双色"
+      ],
+      "demo": "dither-shader-demo-duotone.jsx",
+      "code": "import { DitherShader } from \"@/components/ui/dither-shader\";\n\nexport default function() {\n  return (\n    <DitherShader\n      src=\"https://images.unsplash.com/photo-1555952517-2e8e729e0b44?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0\"\n      gridSize={4}                // 网格密度，越小越细腻（1-8）\n      ditherMode=\"bayer\"          // bayer | halftone | noise | crosshatch\n      colorMode=\"duotone\"         // original | grayscale | duotone | custom\n      primaryColor=\"#1e3a5f\"      // 暗色\n      secondaryColor=\"#f0e68c\"    // 亮色\n      threshold={0.45}            // 阈值 0-1\n      animated={false}            // 开启噪点/半调动画\n      className=\"h-72 w-[400px]\"\n    />\n  );\n}",
+      "usage": [
+        "安装：npx shadcn@latest add @aceternity/dither-shader-demo-duotone",
+        "组件代码位于 src/components/ui/dither-shader.jsx，导出 DitherShader，可单独复用。",
+        "src 必须是支持 CORS 的图片地址；className 控制容器大小。",
+        "colorMode：original 保留原色、grayscale 黑白点阵、duotone 双色、custom 自定义调色板（customPalette 数组）。",
+        "gridSize 控制点阵密度；ditherMode 可切换 bayer / halftone / noise / crosshatch；threshold 设置临界阈值。"
+      ]
+    },
+    {
+      "id": "images-badge-demo",
+      "title": "Images Badge 图片徽章",
+      "description": "Aceternity UI · 悬停时文件夹展开、图片扇形弹出的交互徽章",
+      "tags": [
+        "Framer Motion",
+        "悬停交互",
+        "动画"
+      ],
+      "demo": "images-badge-demo.jsx",
+      "code": "import { ImagesBadge } from \"@/components/ui/images-badge\";\n\nexport default function() {\n  return (\n    <ImagesBadge\n      text=\"Introducing Agenforce Marketing Template\"\n      images={[\n        \"https://assets.aceternity.com/pro/agenforce-1.webp\",\n        \"https://assets.aceternity.com/pro/agenforce-2.webp\",\n        \"https://assets.aceternity.com/pro/agenforce-3.webp\",\n      ]}\n    />\n  );\n}",
+      "usage": [
+        "安装：npx shadcn@latest add @aceternity/images-badge-demo",
+        "核心组件 src/components/ui/images-badge.jsx 导出 ImagesBadge，可独立复用（依赖 motion 动画库）。",
+        "text 为徽章文案；images 为预览图数组（最多显示 3 张，悬停时扇形展开）。",
+        "可选 props：folderSize / teaserImageSize / hoverImageSize 控制文件夹与图片尺寸；hoverSpread / hoverRotation 控制展开间距与旋转角。",
+        "传入 href 时渲染为 <a> 链接，target=\"_blank\" 会自动加上 noopener noreferrer。"
+      ]
+    },
+    {
+      "id": "encrypted-text-demo-2",
+      "title": "Encrypted Text 解密文字",
+      "description": "Aceternity UI · 乱码逐字符解密的效果，本站 Hero 使用的就是它",
+      "tags": [
+        "文字效果",
+        "乱码解密",
+        "进入视口动画"
+      ],
+      "demo": "encrypted-text-demo-2.jsx",
+      "code": "import { EncryptedText } from \"@/components/ui/encrypted-text\";\n\nexport default function() {\n  return (\n    <EncryptedText\n      text=\"Welcome to the Matrix, Neo.\"\n      revealDelayMs={50}          // 每个字符解密间隔 (ms)\n      flipDelayMs={50}            // 未解密字符闪烁频率 (ms)\n      encryptedClassName=\"text-neutral-500\"\n      revealedClassName=\"dark:text-white text-black\"\n    />\n  );\n}",
+      "usage": [
+        "安装：npx shadcn@latest add @aceternity/encrypted-text-demo-2",
+        "核心组件 src/components/ui/encrypted-text.jsx 默认导出 EncryptedText，依赖 motion 动画库。",
+        "text 为要解密展示的原文；组件滚动进入视口自动触发解密动画（useInView，once 模式）。",
+        "revealDelayMs 控制每字符解密间隔；flipDelayMs 控制未解密区乱码的刷新频率；charset 可自定义乱码字符集。",
+        "encryptedClassName 作用于乱码状态，revealedClassName 作用于解密后；再次渲染不同文案即自动重新播放。"
+      ]
+    },
+    {
+      "id": "cards-demo-1",
+      "title": "Cards",
+      "description": "Aceternity · 通过网页一键添加的组件卡片",
+      "tags": [
+        "Aceternity",
+        "自动添加"
+      ],
+      "demo": "cards-demo-1.jsx",
+      "code": "<div className=\"max-w-xs w-full\">\r\n      <div\r\n        className={cn(\r\n          \"group w-full cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border border-transparent dark:border-neutral-800\",\r\n          \"bg-[url(https://images.unsplash.com/photo-1476842634003-7dcca8f832de?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80)] bg-cover\",\r\n          // Preload hover image by setting it in a pseudo-element\r\n          \"before:bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWlodTF3MjJ3NnJiY3Rlc2J0ZmE0c28yeWoxc3gxY2VtZzA5ejF1NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/syEfLvksYQnmM/giphy.gif)] before:fixed before:inset-0 before:opacity-0 before:z-[-1]\",\r\n          \"hover:bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWlodTF3MjJ3NnJiY3Rlc2J0ZmE0c28yeWoxc3gxY2VtZzA5ejF1NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/syEfLvksYQnmM/giphy.gif)]\",\r\n          \"hover:after:content-[''] hover:after:absolute hover:after:inset-0 hover:after:bg-black hover:after:opacity-50\",\r\n          \"transition-all duration-500\"\r\n        )}>\r\n        <div className=\"text relative z-50\">\r\n          <h1 className=\"font-bold text-xl md:text-3xl text-gray-50 relative\">\r\n            Background Overlays\r\n          </h1>\r\n          <p className=\"font-normal text-base text-gray-50 relative my-4\">\r\n            This card is for some special elements, like displaying background\r\n            gifs on hover only.\r\n          </p>\r\n        </div>\r\n      </div>\r\n    </div>",
+      "usage": [
+        "安装：npx shadcn@latest add @aceternity/cards-demo-1",
+        "核心组件 src/components/cards-demo-1.jsx，导出 CardDemo，可独立复用。",
+        "组件使用默认 props 即可工作。",
+        "预览基于官方 demo；「可复用代码」为从 demo 提取的调用示例。"
+      ]
+    },
+    {
+      "id": "features-section-demo-1",
+      "title": "Features Section",
+      "description": "Aceternity · 通过网页一键添加的组件卡片",
+      "tags": [
+        "Aceternity",
+        "自动添加"
+      ],
+      "demo": "features-section-demo-1.jsx",
+      "code": "<div className=\"py-20 lg:py-40\">\r\n      <div\r\n        className=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-2 max-w-7xl mx-auto\">\r\n        {grid.map((feature) => (\r\n          <div\r\n            key={feature.title}\r\n            className=\"relative bg-gradient-to-b dark:from-neutral-900 from-neutral-100 dark:to-neutral-950 to-white p-6 rounded-3xl overflow-hidden\">\r\n            <Grid size={20} />\r\n            <p\r\n              className=\"text-base font-bold text-neutral-800 dark:text-white relative z-20\">\r\n              {feature.title}\r\n            </p>\r\n            <p\r\n              className=\"text-neutral-600 dark:text-neutral-400 mt-4 text-base font-normal relative z-20\">\r\n              {feature.description}\r\n            </p>\r\n          </div>\r\n        ))}\r\n      </div>\r\n    </div>",
+      "usage": [
+        "安装：npx shadcn@latest add @aceternity/features-section-demo-1",
+        "核心组件 src/components/features-section-demo-1.jsx，导出 FeaturesSectionDemo，可独立复用。",
+        "主要 props：pattern、size。",
+        "预览基于官方 demo；「可复用代码」为从 demo 提取的调用示例。"
+      ]
+    },
+    {
+      "id": "MaskedHeading",
+      "title": "MaskedHeading",
+      "description": "React Bits · 通过网页一键添加的组件卡片",
+      "tags": [
+        "React Bits",
+        "自动添加"
+      ],
+      "demo": "MaskedHeading-demo.jsx",
+      "code": "<MaskedHeading\n      src=\"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200&auto=format&fit=crop\"\n    />",
+      "usage": [
+        "安装：npx shadcn@latest add @react-bits/MaskedHeading-JS-CSS",
+        "核心组件 src/components/MaskedHeading-demo.jsx，导出 MaskedHeadingDemo，可独立复用。",
+        "组件使用默认 props 即可工作。",
+        "预览基于官方 demo；「可复用代码」为从 demo 提取的调用示例。"
+      ]
+    },
+    {
+      "id": "ParticleText",
+      "title": "ParticleText",
+      "description": "React Bits · 通过网页一键添加的组件卡片",
+      "tags": [
+        "React Bits",
+        "自动添加"
+      ],
+      "demo": "ParticleText-demo.jsx",
+      "code": "<ParticleText\n    />",
+      "usage": [
+        "安装：npx shadcn@latest add @react-bits/ParticleText-JS-CSS",
+        "核心组件 src/components/ParticleText-demo.jsx，导出 ParticleTextDemo，可独立复用。",
+        "组件使用默认 props 即可工作。",
+        "预览基于官方 demo；「可复用代码」为从 demo 提取的调用示例。"
+      ]
+    },
+    {
+      "id": "Silk",
+      "title": "Silk",
+      "description": "React Bits · 通过网页一键添加的组件卡片",
+      "tags": [
+        "React Bits",
+        "Three.js",
+        "自动添加"
+      ],
+      "demo": "Silk.jsx",
+      "code": "<mesh ref={ref}>\r\n      <planeGeometry args={[1, 1, 1, 1]} />\r\n      <shaderMaterial\r\n        uniforms={uniforms}\r\n        vertexShader={vertexShader}\r\n        fragmentShader={fragmentShader} />\r\n    </mesh>",
+      "usage": [
+        "安装：npx shadcn@latest add @react-bits/Silk-JS-CSS",
+        "核心组件 src/components/Silk.jsx，导出 Silk，可独立复用。",
+        "主要 props：uniforms }, ref) {、const { viewport } = useThree();、useLayoutEffect(() => {、if (ref.current) {、ref.current.scale.set(viewport.width, viewport.height, 1);、} 等。",
+        "依赖：Three.js，已自动安装。",
+        "预览基于官方 demo；「可复用代码」为从 demo 提取的调用示例。"
+      ]
+    }
+  ]
+}
