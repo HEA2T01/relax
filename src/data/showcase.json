@@ -162,6 +162,23 @@
         "依赖：Three.js，已自动安装。",
         "预览基于官方 demo；「可复用代码」为从 demo 提取的调用示例。"
       ]
+    },
+    {
+      "id": "aurora-background-demo",
+      "title": "Aurora Background",
+      "description": "Aceternity · 通过网页一键添加的组件卡片",
+      "tags": [
+        "Aceternity",
+        "自动添加"
+      ],
+      "demo": "aurora-background-demo.jsx",
+      "code": "<AuroraBackground\n    />",
+      "usage": [
+        "安装：npx shadcn@latest add @aceternity/aurora-background",
+        "核心组件 src/components/aurora-background-demo.jsx，导出 AuroraBackground，可独立复用。",
+        "组件使用默认 props 即可工作。",
+        "预览基于官方 demo；「可复用代码」为从 demo 提取的调用示例。"
+      ]
     }
   ]
 }
