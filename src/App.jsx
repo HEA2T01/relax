@@ -7,10 +7,16 @@ import showcase from './data/showcase.json'
 
 const MANIFEST = showcase.entries || []
 
+const demoModules = import.meta.glob('./components/**/*.jsx')
+
 const demoLoaders = {}
 for (const entry of MANIFEST) {
   if (entry.demo) {
-    demoLoaders[entry.id] = lazy(() => import(`./components/${entry.demo}`))
+    const modulePath = `./components/${entry.demo}`
+    const loader = demoModules[modulePath]
+    if (loader) {
+      demoLoaders[entry.id] = lazy(loader)
+    }
   }
 }
 
