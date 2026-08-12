@@ -179,6 +179,23 @@
         "组件使用默认 props 即可工作。",
         "预览基于官方 demo；「可复用代码」为从 demo 提取的调用示例。"
       ]
+    },
+    {
+      "id": "Aurora-Aurora",
+      "title": "Aurora",
+      "description": "React Bits · 通过网页一键添加的组件卡片",
+      "tags": [
+        "React Bits",
+        "自动添加"
+      ],
+      "demo": "Aurora/Aurora.jsx",
+      "code": "<Aurora />",
+      "usage": [
+        "安装：npx shadcn@latest add @react-bits/Aurora-JS-CSS",
+        "核心组件 src/components/Aurora/Aurora.jsx，导出 Aurora，可独立复用。",
+        "组件使用默认 props 即可工作。",
+        "预览基于官方 demo；「可复用代码」为从 demo 提取的调用示例。"
+      ]
     }
   ]
 }
